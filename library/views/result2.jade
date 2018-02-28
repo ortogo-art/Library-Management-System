@@ -1,0 +1,15 @@
+h1 #{title}
+
+p Welcome to #{title}
+
+- if(data.length)
+  table
+    tr
+      th ISBN
+      th Title
+         each col in data
+            tr
+               td #{col.isbn}
+               td #{col.title}
+-else
+  p The database might not have loaded correctly :(

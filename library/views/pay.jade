@@ -1,0 +1,42 @@
+doctype html
+html(lang='en')
+  head
+    title Bootstrap Example
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+  body
+    .container
+
+
+
+        h1.text-center #{title}
+
+
+        h4.text-center
+          a(href="/") Home
+        h5.text-center The borrower with card id #{id} owes a total amount of #{sum}$. Please note that you can pay fines for only those books which have been checked in!
+
+        - if(data.length)
+          table.table
+           tr
+              th Card Id
+              th Loan Id
+              th Amount Due
+              th Checked In?
+              th Make Payment
+                each col in data
+                  tr
+                     td #{col.card_id}
+                     td #{col.loan_id}
+                     td #{col.fine_amt}
+                     td #{col.checked_in}
+                     td 
+                       a(href="/") Pay
+               
+        -else
+          p Your query does not match any field. Please try again with another search term.
+
+

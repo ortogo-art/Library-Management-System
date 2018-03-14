@@ -1,0 +1,43 @@
+doctype html
+html(lang='en')
+  head
+    title Library Management System
+    |     
+    meta(charset='utf-8')
+    |     
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    |     
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    |     
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    |     
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+  |   
+  body
+    .container
+      br
+      br
+      br
+      |       
+      .jumbotron.text-center
+        h1 Library Management System
+        |         
+        p The University of Texas at Dallas
+      br
+      br
+      |       
+      .panel.panel-default.text-center
+        .panel-body
+          form(method='post', action='/home')
+            .form-group
+              label(for='Name') Name
+              |               
+              input#Name.form-control(type='text', required='', placeholder='Enter Name', name='Name')
+              | &#x9;&#x9;&#x9;  
+              label(for='Password') Password
+              |               
+              input#Password.form-control(type='password', required='', placeholder='Enter Password', name='Password')
+              |             
+              button(type='submit') Submit
+    br
+    br

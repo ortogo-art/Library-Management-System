@@ -148,7 +148,7 @@ app.post('/checkout',function(req,res){
 	var bookisbn=req.body.bookisbn;
 	var sql5="insert into book_loans(`card_id`,`date_out`,`due_date`,`isbn`) values(\'"+bid+"\',now(), DATE_ADD(NOW(), INTERVAL 14 DAY), \'"+bookisbn+"\')";
 	//var sql5="insert into book_loans(`card_id`,`date_in`,`due_date`,`isbn`) values(3,now(), DATE_ADD(NOW(), INTERVAL 14 DAY), \'0001047973\')";
-	var sql6="select count(*) as d from book_loans where card_id=\'"+bid+"\'";
+	var sql6="select count(*) as d from book_loans where card_id=\'"+bid+"\' and date_in='2017-01-01 01:01:00'";
 	var sql7="select count(card_id) as c from book_loans where isbn=\'"+bookisbn+"\'";
 	//result is rows
 	con.query(sql7,function(err,result,fields){

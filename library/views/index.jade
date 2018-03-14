@@ -7,44 +7,39 @@ html(lang='en')
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
-  body
+  body(style='background-color:powderblue;')
     .container
       br
       br
       br
-      .jumbotron.text-center
-        h1 Library Management System
-        p The University of Texas at Dallas
+      
+      .panel.panel-default.text-center
+        .panel-body(style='background-color:black;')
+          h1
+            font(color="white") Library Management System
       br
-      br
-      .panel.panel-default
-        .panel-body
-          h4
-            | Click on the buttons below to access book search functionality, book loans functionality, borrower management functionality, as well as to access fines!
-      br
-      br
-      ul.nav.nav-pills.nav-justified
+      ul.nav.nav-pills.nav-justified(style='background-color:green')
         li.active
-          a(data-toggle='tab', href='#search') Book Search
+          a(data-toggle='tab', href='#searchbook',style='color:black') Book Search
         li
-          a(data-toggle='tab', href='#checkout') Check Out Books
+          a(data-toggle='tab', href='#checkoutbook',style='color:black') Check Out Books
         li
-          a(data-toggle='tab', href='#checkin') Check In Books
+          a(data-toggle='tab', href='#checkinbook',style='color:black') Check In Books
         li
-          a(data-toggle='tab', href='#add') Add Borrowers
+          a(data-toggle='tab', href='#addborrower',style='color:black') Add Borrowers
         li
-          a(data-toggle='tab', href='#fines') Fine Management
+          a(data-toggle='tab', href='#finesManagement',style='color:black') Fine Management
       .tab-content
-        #search.tab-pane.fade.in.active
-          h3 Book Search
+        #searchbook.tab-pane.fade.in.active
+          h3(style='color:red;') Book Search
           p Search below for a book using any combination of ISBN, title, and/or Author(s)
           form(method='post',action='/searchresult')
             .form-group
               label(for='searchField') Search
               input#searchField.form-control(type='text', required, placeholder='Search books', name='hi')
-            button.btn.btn-primary(type='submit') Submit
-        #checkout.tab-pane.fade
-          h3 Check Out Books
+            button.btn.btn-primary(type='submit',style='background-color:brown;') Submit
+        #checkoutbook.tab-pane.fade
+          h3(style='color:red;') Check Out Books
           p Enter borrower's card number and the isbn of the book that they would like to check out. The book shall be due back in the library 14 days from today. Please note that the book checkout shall fail if you already have 3 book checked out. 
           form(method='post',action='/checkout')
             .form-group
@@ -53,18 +48,18 @@ html(lang='en')
             .form-group
               label(for='bookisbn') Book ISBN
               input#bookisbn.form-control(type='text', required,  placeholder='Enter ISBN number of the book to be checked out', name='bookisbn')
-            button.btn.btn-primary(type='submit') Check Out Book
+            button.btn.btn-primary(type='submit',style='background-color:brown;') Check Out Book
             
-        #checkin.tab-pane.fade
-          h3 Check In Books
+        #checkinbook.tab-pane.fade
+          h3(style='color:red;') Check In Books
           p Enter card number, book ISBN or borrower's name to search for a checked out book. Press Return Book button to return the book back to the library
           form(method='post',action='/checkin')
             .form-group
               label(for='loanSearch') Search Checked Out Books
               input#loanSearch.form-control(type='text', required, placeholder='Enter card number, book ISBN or borrower name to search for a checked out book', name='loanSearch')
-            button.btn.btn-primary(type='submit') Return Book
-        #add.tab-pane.fade
-          h3 Add Borrowers
+            button.btn.btn-primary(type='submit',style='background-color:brown;') Return Book
+        #addborrower.tab-pane.fade
+          h3(style='color:red;') Add Borrowers
           p Fill in the information below in order to add new borrowers into the system.
           form(method='post',action='/add')
              .form-group
@@ -79,11 +74,11 @@ html(lang='en')
              .form-group
                 label(for='bor_phone') Phone number
                 input#bor_phone.form-control(type='number', required,  maxlength=10, minlength=10, placeholder='Enter phone number',name='bor_phone')
-             button.btn.btn-primary(type='submit') Add Borrower
-        #fines.tab-pane.fade
-          h3 Update Fines Table
+             button.btn.btn-primary(type='submit',style='background-color:brown;') Add Borrower
+        #finesManagement.tab-pane.fade
+          h3(style='color:red;') Update Fines Table
           form(action='/update')
-            button.btn.btn-primary(type='submit' data-toggle='modal', data-target='#myModal') Update Fine
+            button.btn.btn-primary(type='submit' data-toggle='modal', data-target='#myModal', style='background-color:brown;') Update Fine
             #myModal.modal.fade(role='dialog')
              .modal-dialog
               .modal-content
@@ -93,17 +88,17 @@ html(lang='en')
                 .modal-body
                    p Fine Table Updated!
                 .modal-footer
-                  button.btn.btn-default(type='button', data-dismiss='modal') Close
+                  button.btn.btn-default(type='button', data-dismiss='modal',style='background-color:brown;') Close
           br
-          h3 Display Fines
+          h3(style='color:red;') Display Fines
           form(method='post' action='/disp')
            .form-group
               label(for='cardid') Card ID
               input#cardid.form-control(type='number', placeholder='Enter loan id', name="cardid")
-           button.btn.btn-primary(type='submit') Display Fines
+           button.btn.btn-primary(type='submit' style='background-color:brown;' ) Display Fines
           
           br
-          h3 Pay Fines
+          h3(style='color:red;') Pay Fines
           form(method='post' action='/pay')
            
            .form-group
@@ -112,7 +107,7 @@ html(lang='en')
            .form-group
               label(for='fineamt') Fine: $
               input#fineamt.form-control(type='number', placeholder='Enter fine amount (optional)', name="payamt")
-           button.btn.btn-primary(type='submit' ) Pay
+           button.btn.btn-primary(type='submit' style='background-color:brown;' ) Pay
            
       br
       br

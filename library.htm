@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Library Management System</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body style="background-color:powderblue">
+    <div class="container"><br><br><br>
+      <div class="panel panel-default text-center">
+        <div class="panel-body" style="background-color:black">
+          <h1><font color="white">Library Management System</font></h1>
+        </div>
+      </div><br>
+      <ul class="nav nav-pills nav-justified" style="background-color:green">
+        <li class="active"><a data-toggle="tab" href="#searchbook" style="color:black">Book Search</a></li>
+        <li><a data-toggle="tab" href="#checkoutbook" style="color:black">Check Out Books</a></li>
+        <li><a data-toggle="tab" href="#checkinbook" style="color:black">Check In Books</a></li>
+        <li><a data-toggle="tab" href="#addborrower" style="color:black">Add Borrowers</a></li>
+        <li><a data-toggle="tab" href="#finesManagement" style="color:black">Fine Management</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="searchbook">
+          <h3 style="color:red">Book Search</h3>
+          <p>Search below for a book using any combination of ISBN, title, and/or Author(s)</p>
+          <form method="post" action="/searchresult">
+            <div class="form-group">
+              <label for="searchField">Search</label>
+              <input class="form-control" id="searchField" type="text" required placeholder="Search books" name="hi">
+            </div>
+            <button class="btn btn-primary" type="submit" style="background-color:brown">Submit</button>
+          </form>
+        </div>
+        <div class="tab-pane fade" id="checkoutbook">
+          <h3 style="color:red">Check Out Books</h3>
+          <p>Enter borrower's card number and the isbn of the book that they would like to check out. The book shall be due back in the library 14 days from today. Please note that the book checkout shall fail if you already have 3 book checked out. </p>
+          <form method="post" action="/checkout">
+            <div class="form-group">
+              <label for="bid">Borrower Card ID</label>
+              <input class="form-control" id="bid" type="text" required placeholder="Enter borrower card ID number" name="bid">
+            </div>
+            <div class="form-group">
+              <label for="bookisbn">Book ISBN</label>
+              <input class="form-control" id="bookisbn" type="text" required placeholder="Enter ISBN number of the book to be checked out" name="bookisbn">
+            </div>
+            <button class="btn btn-primary" type="submit" style="background-color:brown">Check Out Book</button>
+          </form>
+        </div>
+        <div class="tab-pane fade" id="checkinbook">
+          <h3 style="color:red">Check In Books</h3>
+          <p>Enter card number, book ISBN or borrower's name to search for a checked out book. Press Return Book button to return the book back to the library</p>
+          <form method="post" action="/checkin">
+            <div class="form-group">
+              <label for="loanSearch">Search Checked Out Books</label>
+              <input class="form-control" id="loanSearch" type="text" required placeholder="Enter card number, book ISBN or borrower name to search for a checked out book" name="loanSearch">
+            </div>
+            <button class="btn btn-primary" type="submit" style="background-color:brown">Return Book</button>
+          </form>
+        </div>
+        <div class="tab-pane fade" id="addborrower">
+          <h3 style="color:red">Add Borrowers</h3>
+          <p>Fill in the information below in order to add new borrowers into the system.</p>
+          <form method="post" action="/add">
+            <div class="form-group">
+              <label for="bor_name">Full Name</label>
+              <input class="form-control" id="bor_name" type="text" required placeholder="Enter full name" name="bor_name">
+            </div>
+            <div class="form-group">
+              <label for="bor_ssn">SSN</label>
+              <input class="form-control" id="bor_ssn" type="number" required maxlength="9" minlength="9" placeholder="Enter social security number in format xxxxxxxxx" name="bor_ssn">
+            </div>
+            <div class="form-group">
+              <label for="bor_address">Address</label>
+              <input class="form-control" id="bor_address" type="text" required placeholder="Enter address, city, state" name="bor_address">
+            </div>
+            <div class="form-group">
+              <label for="bor_phone">Phone number</label>
+              <input class="form-control" id="bor_phone" type="number" required maxlength="10" minlength="10" placeholder="Enter phone number" name="bor_phone">
+            </div>
+            <button class="btn btn-primary" type="submit" style="background-color:brown">Add Borrower</button>
+          </form>
+        </div>
+        <div class="tab-pane fade" id="finesManagement">
+          <h3 style="color:red">Update Fines Table</h3>
+          <form action="/update">
+            <button class="btn btn-primary" type="submit" data-toggle="modal" data-target="#myModal" style="background-color:brown">Update Fine</button>
+            <div class="modal fade" id="myModal" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">Update Message</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Fine Table Updated!</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-default" type="button" data-dismiss="modal" style="background-color:brown">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form><br>
+          <h3 style="color:red">Display Fines</h3>
+          <form method="post" action="/disp">
+            <div class="form-group">
+              <label for="cardid">Card ID</label>
+              <input class="form-control" id="cardid" type="number" placeholder="Enter loan id" name="cardid">
+            </div>
+            <button class="btn btn-primary" type="submit" style="background-color:brown">Display Fines</button>
+          </form><br>
+          <h3 style="color:red">Pay Fines</h3>
+          <form method="post" action="/pay">
+            <div class="form-group">
+              <label for="loanid">Loan ID</label>
+              <input class="form-control" id="loanid" type="number" placeholder="Enter loan id" name="loanid">
+            </div>
+            <div class="form-group">
+              <label for="fineamt">Fine: $</label>
+              <input class="form-control" id="fineamt" type="number" placeholder="Enter fine amount (optional)" name="payamt">
+            </div>
+            <button class="btn btn-primary" type="submit" style="background-color:brown">Pay</button>
+          </form>
+        </div>
+      </div><br><br><br><br>
+    </div>
+  </body>
+</html>
